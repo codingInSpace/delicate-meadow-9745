@@ -11,14 +11,14 @@ document.body.appendChild(renderer.domElement)
 let controls = new OrbitControls(camera, renderer.domElement)
 
 // Light
-let light = new THREE.DirectionalLight(0xffffff, 1.0)
-light.position.set(100, 100, 100)
+let light = new THREE.PointLight(0xeeeeee, 1.2, 500)
+light.position.set(-40, 80, 40)
 scene.add(light)
 
 // Sample object
-const geometry = new THREE.PlaneBufferGeometry( 64, 64, 32, 16 );
-const material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide, wireframe: true} );
-const plane = new THREE.Mesh( geometry, material );
+let planeGeo = new THREE.PlaneGeometry( 64, 64, 32, 16 );
+const material = new THREE.MeshLambertMaterial({color: 0x555555, emissive: 0xdddddd, wireframe: true, shading: THREE.NoShading});
+const plane = new THREE.Mesh( planeGeo, material );
 scene.add( plane );
 
 plane.position.x = 0.0
@@ -29,10 +29,26 @@ camera.position.y = -30
 camera.position.z = 2
 camera.lookAt(plane)
 
-let timer = 0.002 * Date.now()
+plane.geometry.dynamic = true
+
+for (let i : number = 0; i < plane.geometry.vertices.length; ++i) {
+	const { x, y } = plane.geometry.vertices[i]
+	plane.geometry.vertices[i].x = x + rand(-0.4, 0.4)
+	plane.geometry.vertices[i].y = y + rand(-0.5, 0.5)
+	plane.geometry.vertices[i].z = rand(-4, -2)
+}
+
+plane.geometry.verticesNeedUpdate = true
+plane.geometry.normalsNeedUpdate = true
+
+plane.geometry.computeVertexNormals()
+plane.geometry.computeFaceNormals()
+
+let timer : number = 0.0000001 * Date.now()
 
 animate()
 
+console.log(plane.geometry)
 function animate(): void {
 	requestAnimationFrame(() => animate())
 	render()
@@ -41,6 +57,27 @@ function animate(): void {
 function render(): void {
 	timer += 0.005
 	plane.rotation.x += 0.00001 * Math.sin(timer)
+
+	for (let i : number = 0; i < plane.geometry.vertices.length; ++i) {
+		const { x, y } = plane.geometry.vertices[i]
+		plane.geometry.vertices[i].z += -i * 0.00001 * (Math.sin(10.5 * timer))
+	}
+
+	plane.geometry.verticesNeedUpdate = true
+	plane.geometry.normalsNeedUpdate = true
+
+	plane.geometry.computeVertexNormals()
+	plane.geometry.computeFaceNormals()
+
 	renderer.render(scene, camera)
 	controls.update()
+}
+
+function rand(min, max): number {
+  if (max === null) {
+    max = min
+    min = 0
+  }
+
+  return min + (Math.random() * (max - min + 1))
 }
