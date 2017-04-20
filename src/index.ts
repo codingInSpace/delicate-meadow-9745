@@ -16,20 +16,18 @@ light.position.set(100, 100, 100)
 scene.add(light)
 
 // Sample object
-let material = new THREE.MeshBasicMaterial({
-	color: 0xaaaaaa,
-	wireframe: true
-})
-let box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material)
-scene.add(box)
+const geometry = new THREE.PlaneBufferGeometry( 64, 64, 32, 16 );
+const material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide, wireframe: true} );
+const plane = new THREE.Mesh( geometry, material );
+scene.add( plane );
 
-box.position.x = 0.5
-box.rotation.y = 0.5
+plane.position.x = 0.0
+plane.position.y = 3.0
 
-camera.position.x = 5
-camera.position.y = 5
-camera.position.z = 5
-camera.lookAt(box)
+camera.position.x = 0
+camera.position.y = -30
+camera.position.z = 2
+camera.lookAt(plane)
 
 let timer = 0.002 * Date.now()
 
@@ -42,7 +40,7 @@ function animate(): void {
 
 function render(): void {
 	timer += 0.005
-	box.rotation.x += 0.01 * Math.sin(timer)
+	plane.rotation.x += 0.00001 * Math.sin(timer)
 	renderer.render(scene, camera)
 	controls.update()
 }

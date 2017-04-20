@@ -5,7 +5,6 @@ const ROOT_PATH = path.resolve(__dirname);
 module.exports = {
 	devtool: 'source-map',
 	entry: [
-		'webpack-hot-middleware/client',
 		path.resolve(__dirname, 'src/index.ts')
 	],
 	output: {
