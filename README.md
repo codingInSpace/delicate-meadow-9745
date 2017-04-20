@@ -1,3 +1,8 @@
+Install   
+```bash
+yarn
+```   
+
 Dev server   
 ```bash
 yarn start
