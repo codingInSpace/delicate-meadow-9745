@@ -20,12 +20,7 @@ module.exports = {
 	    new webpack.NoEmitOnErrorsPlugin()
 	],
 	module: {
-	loaders: [{
-		test: /\.js$/,
-		exclude: /node_modules/,
-		loader: 'babel-loader',
-		query: { presets: [ 'es2015' ] }
-	},
+	loaders: [
 	{
         test: /\.ts$/,
         loader: 'awesome-typescript-loader'

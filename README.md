@@ -11,6 +11,7 @@ yarn start
 
 Build   
 ```bash
+mkdir public  
 yarn build
 # load index.html
 ```

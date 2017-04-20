@@ -12,7 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "awesome-typescript-loader": "^3.1.2",
-    "babel-loader": "^6.4.1",
     "live-server": "^1.2.0",
     "orbit-controls-es6": "^1.0.8",
     "three": "^0.84.0",
@@ -20,7 +19,6 @@
     "typescript": "^2.2.2",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.2",
-    "webpack-glsl-loader": "^1.0.1",
-    "webpack-hot-middleware": "^2.18.0"
+    "webpack-glsl-loader": "^1.0.1"
   }
 }
