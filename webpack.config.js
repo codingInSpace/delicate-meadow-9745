@@ -13,7 +13,7 @@ module.exports = {
 		publicPath: '/'
 	},
 	resolve: {
-	    extensions: ['.ts', '.js']
+	    extensions: ['.ts', '.js', '.glsl']
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
@@ -27,7 +27,7 @@ module.exports = {
 	}, 
 	{
 		test: /\.glsl$/,
-		loader: 'webpack-glsl'
+		loader: 'webpack-glsl-loader'
 	}]
   }
 };
