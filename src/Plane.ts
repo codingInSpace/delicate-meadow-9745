@@ -11,7 +11,7 @@ class Plane {
 	}
 
 	init(): void {
-		const planeGeo = new THREE.PlaneGeometry( 64, 64, 32, 16 );
+		const planeGeo = new THREE.PlaneGeometry( 256, 256, 128, 128 );
 		const material = new THREE.ShaderMaterial({
 		      uniforms: this.uniforms,
 		      wireframe: true,
@@ -23,9 +23,9 @@ class Plane {
 
 		for (let i : number = 0; i < this.mesh.geometry.vertices.length; ++i) {
 			const { x, y } = this.mesh.geometry.vertices[i]
-			this.mesh.geometry.vertices[i].x = x + this.rand(-0.4, 0.4)
-			this.mesh.geometry.vertices[i].y = y + this.rand(-0.5, 0.5)
-			this.mesh.geometry.vertices[i].z = this.rand(-3, -2)
+			this.mesh.geometry.vertices[i].x = x + this.rand(-0.01, 0.01)
+			//this.mesh.geometry.vertices[i].y = y + this.rand(-0.2, 0.1)
+			this.mesh.geometry.vertices[i].z = this.rand(-0.02, -0.01)
 		}
 
 		this.mesh.geometry.verticesNeedUpdate = true
