@@ -37,10 +37,10 @@ scene.add( plane.mesh );
 
 plane.mesh.position.y = 3.0
 
-camera.lookAt(plane.mesh)
 camera.position.x = 0
-camera.position.y = -50
-camera.position.z = 200
+camera.position.y = -180
+camera.position.z = 150
+camera.lookAt(plane.mesh)
 
 plane.mesh.geometry.dynamic = true
 
