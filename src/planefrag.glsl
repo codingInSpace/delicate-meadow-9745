@@ -8,7 +8,8 @@ void main() {
 	vec3 color = vec3(0.0);
 
     // mix the two colors
-    color = mix(colorA, colorB, elevation); 
+    //color = mix(colorA, colorB, elevation); 
+    color = mix(colorA, colorB, smoothstep(-60.0, 60.0, elevation));
 
     gl_FragColor = vec4(color,1.0);
 }
