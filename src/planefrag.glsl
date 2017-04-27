@@ -9,7 +9,7 @@ void main() {
 
     // mix the two colors
     //color = mix(colorA, colorB, elevation); 
-    color = mix(colorA, colorB, smoothstep(-60.0, 60.0, elevation));
+    color = mix(colorA, colorB, smoothstep(-40.0, 40.0, elevation));
 
     gl_FragColor = vec4(color,1.0);
 }
