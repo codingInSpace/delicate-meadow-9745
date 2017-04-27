@@ -13,10 +13,13 @@ class Plane {
 	init(): void {
 		const planeGeo = new THREE.PlaneGeometry( 256, 256, 128, 128 );
 		const material = new THREE.ShaderMaterial({
-		      uniforms: this.uniforms,
-		      wireframe: true,
-		      vertexShader: require('./planevert'),
-		      fragmentShader: require('./planefrag')
+			uniforms: this.uniforms,
+			//wireframe: true,
+			vertexShader: require('./planevert'),
+			fragmentShader: require('./planefrag'),
+			defines: {
+				USE_MAP: ''
+			}
 	    })
 
 		this.mesh = new THREE.Mesh( planeGeo, material );

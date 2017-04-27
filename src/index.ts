@@ -26,10 +26,10 @@ scene.add( plane.mesh );
 plane.mesh.position.x = 0.0
 plane.mesh.position.y = 3.0
 
-camera.position.x = 0
-camera.position.y = -30
-camera.position.z = 10
 camera.lookAt(plane.mesh)
+camera.position.x = 0
+camera.position.y = -50
+camera.position.z = 200
 
 plane.mesh.geometry.dynamic = true
 
@@ -42,7 +42,7 @@ function animate(): void {
 
 function render(): void {
 	uniforms.u_time.value += 0.005
-	plane.mesh.rotation.z += 0.00005 * uniforms.u_time.value
+	plane.mesh.rotation.z += 0.005 
 
 	renderer.render(scene, camera)
 	controls.update()
