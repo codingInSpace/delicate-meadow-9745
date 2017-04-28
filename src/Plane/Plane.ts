@@ -18,18 +18,18 @@ class Plane {
 			vertexShader: require('./planevert'),
 			fragmentShader: require('./planefrag'),
 			side: THREE.DoubleSide,
-			defines: {
-				USE_MAP: ''
-			}
+				defines: {
+					USE_MAP: ''
+				}
 	    })
 
 		this.mesh = new THREE.Mesh( planeGeo, material );
 
 		for (let i : number = 0; i < this.mesh.geometry.vertices.length; ++i) {
 			const { x, y } = this.mesh.geometry.vertices[i]
-			this.mesh.geometry.vertices[i].x = x + this.rand(-0.01, 0.01)
-			//this.mesh.geometry.vertices[i].y = y + this.rand(-0.2, 0.1)
-			this.mesh.geometry.vertices[i].z = this.rand(-0.02, -0.01)
+			this.mesh.geometry.vertices[i].x = x + this.rand(-1.0, 1.0)
+			this.mesh.geometry.vertices[i].y = y + this.rand(-1.1, 1.2)
+			this.mesh.geometry.vertices[i].z = this.rand(-0.2, -0.1)
 		}
 
 		this.mesh.geometry.verticesNeedUpdate = true
