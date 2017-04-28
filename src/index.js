@@ -1,10 +1,12 @@
 import * as THREE from 'three'
-import OrbitControls from 'orbit-controls-es6'
+const TrackballControls = require('three-trackballcontrols');
 import Plane from './Plane/Plane'
 import LightBall from './LightBall/LightBall'
 
+function App(width, height) {
+
 const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000)
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 10000)
 
 let uniforms = {
 	u_time: { type: "f", value: 1.0 },
@@ -20,10 +22,13 @@ let uniforms = {
 // })
 
 const renderer = new THREE.WebGLRenderer()
-renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setSize(width, height)
 document.body.appendChild(renderer.domElement)
 
-const controls = new OrbitControls(camera, renderer.domElement)
+let controls
+
+//if (process.env.NODE_ENV !== 'production')
+	controls = new TrackballControls(camera, renderer.domElement)
 
 // Light
 const light = new THREE.PointLight(0xeeeeee, 1.2, 500)
@@ -50,16 +55,22 @@ plane.mesh.geometry.dynamic = true
 
 animate()
 
-function animate(): void {
+function animate() {
 	requestAnimationFrame(() => animate())
 	render()
 }
 
-function render(): void {
+function render() {
 	uniforms.u_time.value += 0.005
 	plane.mesh.rotation.z += 0.005 
 
 	renderer.render(scene, camera)
-	controls.update()
+
+	//if (process.env.NODE_ENV !== 'production')
+		controls.update()
 }
 
+	return renderer.domElement
+}
+
+export default App

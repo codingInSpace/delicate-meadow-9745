@@ -5,7 +5,7 @@ const ROOT_PATH = path.resolve(__dirname);
 module.exports = {
 	devtool: 'source-map',
 	entry: [
-		path.resolve(__dirname, 'src/index.ts')
+		path.resolve(__dirname, 'src/index.js')
 	],
 	output: {
 	    path: path.resolve(ROOT_PATH, 'public'),
@@ -13,7 +13,7 @@ module.exports = {
 		publicPath: '/'
 	},
 	resolve: {
-	    extensions: ['.ts', '.js', '.glsl']
+	    extensions: ['.js', '.glsl']
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
@@ -22,8 +22,9 @@ module.exports = {
 	module: {
 	loaders: [
 	{
-        test: /\.ts$/,
-        loader: 'awesome-typescript-loader'
+        test: /\.js$/,
+        exclude: /node_modules/,
+				loader: 'babel-loader?presets[]=es2015'
 	}, 
 	{
 		test: /\.glsl$/,

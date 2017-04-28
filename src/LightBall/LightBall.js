@@ -1,11 +1,7 @@
 import * as THREE from 'three'
-declare function require(path: string) : any
 
 class LightBall {
-	mesh: THREE.Mesh
-	private uniforms: object
-
-	constructor(radius: number, unfiforms: object) {
+	constructor(radius, unfiforms) {
 		this.uniforms = unfiforms
 
 		const geo = new THREE.SphereGeometry(radius + 2, 64, 64)

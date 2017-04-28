@@ -1,16 +1,12 @@
 import * as THREE from 'three'
-declare function require(path: string) : any
 
 class Plane {
-	private uniforms: object
-	mesh: THREE.Mesh
-
-	constructor(uniforms: object) {
+	constructor(uniforms) {
 		this.uniforms = uniforms
 		this.init()
 	}
 
-	init(): void {
+	init() {
 		const planeGeo = new THREE.PlaneGeometry( 256, 256, 128, 128 );
 		const material = new THREE.ShaderMaterial({
 			uniforms: this.uniforms,
@@ -25,7 +21,7 @@ class Plane {
 
 		this.mesh = new THREE.Mesh( planeGeo, material );
 
-		for (let i : number = 0; i < this.mesh.geometry.vertices.length; ++i) {
+		for (let i = 0; i < this.mesh.geometry.vertices.length; ++i) {
 			const { x, y } = this.mesh.geometry.vertices[i]
 			this.mesh.geometry.vertices[i].x = x + this.rand(-1.0, 1.0)
 			this.mesh.geometry.vertices[i].y = y + this.rand(-1.1, 1.2)
@@ -39,7 +35,7 @@ class Plane {
 		this.mesh.geometry.computeFaceNormals()
 	}
 
-	rand(min, max): number {
+	rand(min, max) {
 		if (max === null) {
 		    max = min
 		    min = 0

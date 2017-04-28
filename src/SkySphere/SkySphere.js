@@ -1,11 +1,7 @@
 import * as THREE from 'three'
-declare function require(path: string) : any
 
 class SkySphere {
-	mesh: THREE.Mesh
-	private uniforms: object
-
-	constructor(radius: number, unfiforms: object) {
+	constructor(radius, unfiforms) {
 		this.uniforms = unfiforms
 
 		 const geo = new THREE.SphereGeometry(radius, 64, 64);
@@ -20,7 +16,7 @@ class SkySphere {
 			side: THREE.BackSide
 	    })
 
-		this.mesh = new THREE.Mesh( geo, material2 );
+		this.mesh = new THREE.Mesh( geo, material2 )
 	}
 }
 
