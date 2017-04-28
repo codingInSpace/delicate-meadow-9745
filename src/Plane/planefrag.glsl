@@ -7,9 +7,8 @@ vec3 colorB = vec3(0.700,0.700,1.000);
 void main() {
 	vec3 color = vec3(0.0);
 
-    // mix the two colors
-    //color = mix(colorA, colorB, elevation); 
-    color = mix(colorA, colorB, smoothstep(-40.0, 40.0, elevation));
+    // mix the two colors according to height in mesh
+    color = mix(colorA, colorB, smoothstep(-30.0, 30.0, elevation));
 
     gl_FragColor = vec4(color,1.0);
 }
