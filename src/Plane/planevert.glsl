@@ -1,9 +1,12 @@
 uniform float u_time;
 varying float elevation;
+varying vec2 vUV;
 
 void main() {
 	vec3 variedpos = position;
 	vec2 vMid = vec2(0.5, 0.5);
+
+	vUV = uv;
 
 	float distToMid = distance(vMid, uv);
 
