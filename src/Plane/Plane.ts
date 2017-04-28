@@ -17,6 +17,7 @@ class Plane {
 			//wireframe: true,
 			vertexShader: require('./planevert'),
 			fragmentShader: require('./planefrag'),
+			side: THREE.DoubleSide,
 			defines: {
 				USE_MAP: ''
 			}
