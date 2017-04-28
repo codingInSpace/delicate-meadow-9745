@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import OrbitControls from 'orbit-controls-es6'
 import Plane from './Plane/Plane'
+import LightBall from './LightBall/LightBall'
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000)
@@ -29,11 +30,14 @@ const light = new THREE.PointLight(0xeeeeee, 1.2, 500)
 light.position.set(-40, 80, 40)
 scene.add(light)
 
-const ambLight = new THREE.AmbientLight(0x404040)
-scene.add(ambLight)
-
 const plane = new Plane(uniforms)
 scene.add( plane.mesh );
+
+const lightBall = new LightBall(4, uniforms)
+scene.add( lightBall.mesh );
+
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.5)
+lightBall.mesh.add(dirLight)
 
 plane.mesh.position.y = 3.0
 
