@@ -14,6 +14,15 @@ void main() {
 	// vary colors by uv coords
 	color.r = color.r + 0.3 * vUV.x;
 	color.g = color.g + 0.1 * vUV.y;
+	
+	if (vUV.x + vUV.y < 0.2)
+		discard;
+	if ((vUV.x + vUV.y) * 0.5 > 0.85)
+		discard;
+	if (vUV.x - vUV.y > 0.8 && vUV.y < 0.2)
+		discard;
+	if (vUV.y - vUV.x > 0.8 && vUV.x < 0.2)
+		discard;
 
 	gl_FragColor = vec4(color,1.0);
 }
