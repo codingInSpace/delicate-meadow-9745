@@ -5,7 +5,7 @@ const ROOT_PATH = path.resolve(__dirname);
 module.exports = {
 	devtool: 'source-map',
 	entry: [
-		path.resolve(__dirname, 'src/index.js')
+		path.resolve(__dirname, 'src/index.dev.js')
 	],
 	output: {
 	    path: path.resolve(ROOT_PATH, 'public'),
@@ -17,7 +17,10 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-	    new webpack.NoEmitOnErrorsPlugin()
+	    new webpack.NoEmitOnErrorsPlugin(),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify('development')
+		})
 	],
 	module: {
 	loaders: [

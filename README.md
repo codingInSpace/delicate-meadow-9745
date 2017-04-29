@@ -1,15 +1,26 @@
-Install   
+
+![screen](http://imgur.com/a/ekxAj)
+
+## Usage
+```js
+import rose from 'violet-sine-rose'  
+const width = window.innerWidth  
+const height = 600  
+someDomElement.appendChild(rose(width, height))  
+```
+
+## Develop
 ```bash
 yarn
 ```   
 
-Dev server   
+Run dev server
 ```bash
 yarn start
 # localhost:8080/webpack-dev-server/bundle
 ```   
 
-Build   
+Build for production  
 ```bash
 mkdir public  
 yarn build
