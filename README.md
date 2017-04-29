@@ -1,5 +1,5 @@
 
-![screen](http://imgur.com/a/ekxAj)
+[screen](http://i.imgur.com/ZeGcbJ9.png)
 
 ## Usage
 ```js
