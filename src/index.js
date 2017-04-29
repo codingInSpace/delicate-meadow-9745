@@ -4,9 +4,16 @@ import Plane from './Plane/Plane'
 import LightBall from './LightBall/LightBall'
 
 function App(width, height) {
-
 	const scene = new THREE.Scene()
 	const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 10000)
+
+	window.addEventListener('resize', () => {
+		const newWidth = window.innerWidth < width ? window.innerWidth : width
+		const newHeight = window.innerHeight < height ? window.innerHeight : height
+		renderer.setSize(newWidth, newHeight)
+		camera.aspect = newWidth / newHeight
+		camera.updateProjectionMatrix()
+	})
 
 	let uniforms = {
 		u_time: { type: "f", value: 1.0 },
@@ -66,8 +73,6 @@ function App(width, height) {
 		plane.mesh.rotation.z += 0.005 
 
 		renderer.render(scene, camera)
-		console.log(camera.position)
-		console.log(camera.rotation)
 
 		if (process.env.NODE_ENV !== 'production')
 			controls.update()
