@@ -27,7 +27,7 @@ function App(width, height) {
 
 	let controls
 
-	//if (process.env.NODE_ENV !== 'production')
+	if (process.env.NODE_ENV !== 'production')
 		controls = new TrackballControls(camera, renderer.domElement)
 
 	// Light
@@ -39,16 +39,17 @@ function App(width, height) {
 	scene.add( plane.mesh );
 
 	const lightBall = new LightBall(4, uniforms)
-	scene.add( lightBall.mesh );
+	plane.mesh.add( lightBall.mesh );
 
 	const dirLight = new THREE.DirectionalLight(0xffffff, 0.5)
 	lightBall.mesh.add(dirLight)
 
-	plane.mesh.position.y = 3.0
+	plane.mesh.position.y = 20.0
+	plane.mesh.position.x = 75.0
+	plane.mesh.rotation.y = -Math.PI / 8
+	plane.mesh.rotation.x = -Math.PI / 6
 
-	camera.position.x = 0
-	camera.position.y = -180
-	camera.position.z = 150
+	camera.position.z = 250
 	camera.lookAt(plane.mesh)
 
 	plane.mesh.geometry.dynamic = true
@@ -65,8 +66,10 @@ function App(width, height) {
 		plane.mesh.rotation.z += 0.005 
 
 		renderer.render(scene, camera)
+		console.log(camera.position)
+		console.log(camera.rotation)
 
-		//if (process.env.NODE_ENV !== 'production')
+		if (process.env.NODE_ENV !== 'production')
 			controls.update()
 	}
 
