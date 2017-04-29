@@ -52,7 +52,7 @@ function App(width, height) {
 	lightBall.mesh.add(dirLight)
 
 	plane.mesh.position.y = 20.0
-	plane.mesh.position.x = 75.0
+	plane.mesh.position.x = 125.0
 	plane.mesh.rotation.y = -Math.PI / 8
 	plane.mesh.rotation.x = -Math.PI / 6
 
