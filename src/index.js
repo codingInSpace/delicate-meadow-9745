@@ -3,13 +3,19 @@ const TrackballControls = require('three-trackballcontrols');
 import Plane from './Plane/Plane'
 import LightBall from './LightBall/LightBall'
 
-function App(width, height) {
+function App(width, height, respondToWidth) {
 	const scene = new THREE.Scene()
 	const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 10000)
 
 	window.addEventListener('resize', () => {
-		const newWidth = window.innerWidth < width ? window.innerWidth : width
-		const newHeight = window.innerHeight < height ? window.innerHeight : height
+		let newWidth
+		const newHeight =	window.innerHeight < height ? window.innerHeight : height
+
+		if (respondToWidth)
+			newWidth = window.innerWidth
+		else
+			newWidth = window.innerWidth < width ? window.innerWidth : width
+
 		renderer.setSize(newWidth, newHeight)
 		camera.aspect = newWidth / newHeight
 		camera.updateProjectionMatrix()
