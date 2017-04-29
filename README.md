@@ -20,9 +20,7 @@ yarn start
 # localhost:8080/webpack-dev-server/bundle
 ```   
 
-Build for production  
+## Build for production  
 ```bash
-mkdir public  
 yarn build
-# load index.html
 ```
