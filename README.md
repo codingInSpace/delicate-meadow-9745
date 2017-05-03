@@ -6,7 +6,7 @@
 import rose from 'violet-sine-rose'  
 const width = window.innerWidth  
 const height = 600  
-someDomElement.appendChild(rose(width, height))  
+someDomElement.appendChild(rose(width, height, true))  
 ```
 
 ## Develop

@@ -14,7 +14,15 @@ void main() {
 	// vary colors by uv coords
 	color.r = color.r + 0.3 * vUV.x;
 	color.g = color.g + 0.1 * vUV.y;
+
+	if (u_time < 1.5) {
+		color = color * 1.0 + (abs(u_time - 1.0));
+	}
 	
+	if (u_time >= 1.5 && u_time < 2.5) {
+		color += 1.0 - ((u_time - 0.5) * 0.5);
+	}
+
 	if (vUV.x + vUV.y < 0.2)
 		discard;
 	if ((vUV.x + vUV.y) * 0.5 > 0.85)

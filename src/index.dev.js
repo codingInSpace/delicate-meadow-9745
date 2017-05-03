@@ -1,3 +1,3 @@
 import App from './index'
 
-App(window.innerWidth, window.innerHeight)
+App(window.innerWidth, window.innerHeight, true)
