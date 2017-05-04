@@ -2,6 +2,9 @@ import * as THREE from 'three'
 const TrackballControls = require('three-trackballcontrols');
 import Plane from './Plane/Plane'
 import LightBall from './LightBall/LightBall'
+import Stats from 'stats.js'
+
+const isDev = process.env.NODE_ENV !== 'production'
 
 function App(width, height, respondToWidth) {
 	const scene = new THREE.Scene()
@@ -40,8 +43,19 @@ function App(width, height, respondToWidth) {
 
 	let controls
 
-	if (process.env.NODE_ENV !== 'production')
+	if (isDev)
 		controls = new TrackballControls(camera, renderer.domElement)
+
+	let stats
+	if (isDev) {
+		stats = new Stats()
+		stats.showPanel(0)
+		stats.dom.style.position = 'absolute'
+		stats.dom.style.left = '10px'
+		stats.dom.style.top = '10px'
+
+		document.body.appendChild(stats.dom)
+	}
 
 	// Light
 	const light = new THREE.PointLight(0xeeeeee, 1.2, 500)
@@ -75,13 +89,17 @@ function App(width, height, respondToWidth) {
 	}
 
 	function render() {
+		if (isDev) stats.begin()
+
 		uniforms.u_time.value += 0.005
 		plane.mesh.rotation.z += 0.005 
 
 		renderer.render(scene, camera)
 
-		if (process.env.NODE_ENV !== 'production')
+		if (isDev) {
 			controls.update()
+			stats.end()
+		}
 	}
 
 	return renderer.domElement
