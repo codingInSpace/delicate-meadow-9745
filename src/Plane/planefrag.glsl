@@ -15,12 +15,18 @@ void main() {
 	color.r = color.r + 0.3 * vUV.x;
 	color.g = color.g + 0.1 * vUV.y;
 
-	if (u_time < 1.5) {
-		color = color * 1.0 + (abs(u_time - 1.0));
+	// White flash rise
+	if (u_time < 1.2) {
+		float factor = u_time * 0.5;
+		factor = factor/0.6;
+		color += smoothstep(0.83, 1.0, factor);
 	}
-	
-	if (u_time >= 1.5 && u_time < 2.5) {
-		color += 1.0 - ((u_time - 0.5) * 0.5);
+
+	// White flash sink
+	if (u_time >= 1.2 && u_time < 1.4) {
+		float factor = 1.0 - (u_time * 0.5);
+		factor = factor/0.4;
+		color += smoothstep(0.75, 1.0, factor);
 	}
 
 	if (vUV.x + vUV.y < 0.2)
