@@ -24,7 +24,6 @@ void main() {
 
 	// White flash sink
 	if (u_time >= 1.1 && u_time < 1.15) {
-		//float factor = 1.0 - (u_time * 0.5);
 		float factor = u_time;
 		factor = (u_time - 1.1) / 0.05;
 		color += 1.0; 
