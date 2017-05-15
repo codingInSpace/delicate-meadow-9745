@@ -51,7 +51,7 @@ function App(width, height, respondToWidth) {
 	const plane = new Plane(uniforms)
 	scene.add( plane.mesh );
 
-	const lightBall = new LightBall(4, uniforms)
+	const lightBall = new LightBall(16, uniforms)
 	plane.mesh.add( lightBall.mesh );
 
 	const dirLight = new THREE.DirectionalLight(0xffffff, 0.5)
