@@ -6,15 +6,24 @@ import Stats from 'stats.js'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-function App(width, height, respondToWidth) {
+/**
+ * Main function
+ *
+ * @param {object} opts - Options running the app
+ * @param {number} opts.width - The width of the canvas
+ * @param {number} opts.height - The height of the canvas
+ * @param {number} opts.respondToWidth - If the canvas should update width on window resize
+ * @param {number} opts.bgColor - The background color of the canvas
+ */
+function App(opts = {}) {
 	const scene = new THREE.Scene()
-	const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 10000)
+	const camera = new THREE.PerspectiveCamera(75, opts.width / opts.height, 0.1, 10000)
 
 	window.addEventListener('resize', () => {
 		let newWidth
-		const newHeight =	window.innerHeight < height ? window.innerHeight : height
+		const newHeight =	window.innerHeight < optsheight ? window.innerHeight : height
 
-		if (respondToWidth)
+		if (opts.respondToWidth)
 			newWidth = window.innerWidth
 		else
 			newWidth = window.innerWidth < width ? window.innerWidth : width
@@ -38,7 +47,7 @@ function App(width, height, respondToWidth) {
 	// })
 
 	const renderer = new THREE.WebGLRenderer({ alpha: true })
-	renderer.setSize(width, height)
+	renderer.setSize(opts.width, opts.height)
 	document.body.appendChild(renderer.domElement)
 
 	let controls
@@ -80,6 +89,8 @@ function App(width, height, respondToWidth) {
 	camera.lookAt(plane.mesh)
 
 	plane.mesh.geometry.dynamic = true
+
+  renderer.domElement.style.backgroundImage = opts.bgColor || 'linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%)'
 
 	animate()
 
