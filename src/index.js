@@ -37,7 +37,7 @@ function App(width, height, respondToWidth) {
 	//   uniforms.u_skyTexture.value = tex;
 	// })
 
-	const renderer = new THREE.WebGLRenderer()
+	const renderer = new THREE.WebGLRenderer({ alpha: true })
 	renderer.setSize(width, height)
 	document.body.appendChild(renderer.domElement)
 
