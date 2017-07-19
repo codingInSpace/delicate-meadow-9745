@@ -16,7 +16,6 @@ const isDev = process.env.NODE_ENV !== 'production'
  * @param {number} opts.bgColor - The background color of the canvas
  */
 function App(opts = {}) {
-  console.log(opts)
 	const scene = new THREE.Scene()
 	const camera = new THREE.PerspectiveCamera(75, opts.width / opts.height, 0.1, 10000)
 
