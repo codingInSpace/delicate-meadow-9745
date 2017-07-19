@@ -21,12 +21,12 @@ function App(opts = {}) {
 
 	window.addEventListener('resize', () => {
 		let newWidth
-		const newHeight =	window.innerHeight < optsheight ? window.innerHeight : height
+		const newHeight =	window.innerHeight < opts.height ? window.innerHeight : opts.height
 
 		if (opts.respondToWidth)
 			newWidth = window.innerWidth
 		else
-			newWidth = window.innerWidth < width ? window.innerWidth : width
+			newWidth = window.innerWidth < opts.width ? window.innerWidth : opts.width
 
 		renderer.setSize(newWidth, newHeight)
 		camera.aspect = newWidth / newHeight
