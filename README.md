@@ -4,9 +4,14 @@
 ## Usage
 ```js
 import rose from 'violet-sine-rose'  
-const width = window.innerWidth  
-const height = 600  
-someDomElement.appendChild(rose(width, height, true))  
+
+const options = {
+  width: window.innerWidth,
+  height: 600,
+  respondToWidth: true,
+}
+
+someDomElement.appendChild(rose(options))  
 ```
 
 ## Develop
