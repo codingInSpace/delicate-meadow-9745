@@ -23,10 +23,13 @@ function App(opts = {}) {
 		let newWidth
 		const newHeight =	window.innerHeight < opts.height ? window.innerHeight : opts.height
 
-		if (opts.respondToWidth)
-			newWidth = window.innerWidth
-		else
+		if (opts.respondToWidth) {
+			newWidth = window.innerWidth && document.documentElement.clientWidth ?
+      Math.min(window.innerWidth, document.documentElement.clientWidth) :
+      window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth
+    } else {
 			newWidth = window.innerWidth < opts.width ? window.innerWidth : opts.width
+    }
 
 		renderer.setSize(newWidth, newHeight)
 		camera.aspect = newWidth / newHeight
